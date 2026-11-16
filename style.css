@@ -1,0 +1,50 @@
+*{box-sizing:border-box}
+:root{font-family:Arial,Helvetica,sans-serif;color:#eaf3ff;background:#030613;color-scheme:dark}
+html{scroll-behavior:smooth}
+body{margin:0;min-height:100vh;background:#030613}
+.page{width:min(100% - 34px,650px);margin:0 auto;padding:38px 0 30px}
+h1{margin:0 0 32px;text-align:center;color:#a9d2ff;font-size:clamp(25px,5vw,34px);line-height:1.2;font-weight:700;letter-spacing:-.7px;text-shadow:0 0 4px #82baff,0 0 13px #267cff,0 0 23px #1763d477}
+.loader-section{margin:0 0 31px}
+.loader-section h2{display:flex;align-items:center;gap:12px;margin:0 0 12px;color:#f0f3fa;font-size:17px;line-height:1.25;font-weight:700;letter-spacing:.15px}
+.loader-section h2 span{display:block;flex:none;width:6px;height:28px;background:#08e9ed;box-shadow:0 0 9px #08e9ed66}
+.panel{position:relative;border:1px solid #164a55;border-radius:22px;background:#0c1525;box-shadow:0 0 15px #12e5ed25,0 0 30px #12e5ed12,inset 0 0 15px #05101e;overflow:hidden}
+.preview-panel{height:255px;margin-bottom:17px}
+.panel-label{position:absolute;left:20px;top:15px;color:#40dce5;font-size:11px;font-weight:700;letter-spacing:1.5px}
+.preview-area{position:absolute;inset:34px 10px 8px;display:grid;place-items:center}
+.code-panel{min-height:245px;padding:50px 20px 20px}
+.code-panel pre{margin:0;white-space:pre-wrap;overflow-wrap:anywhere;color:#d5ddea;font:12px/1.75 "SFMono-Regular",Consolas,"Liberation Mono",monospace}
+.code-panel code{font:inherit}
+
+/* 1. Neon ring: the two colored borders rotate around a transparent circle. */
+.ring-loader{width:130px;height:130px;border-radius:50%;border:8px solid transparent;border-top:8px solid cyan;border-right:8px solid magenta;animation:ringSpin 1s linear infinite;filter:drop-shadow(0 0 7px #e32bff) drop-shadow(0 0 13px #00f0ff)}
+@keyframes ringSpin{to{transform:rotate(360deg)}}
+
+/* 2. Morphing gradient blob. */
+.morph-loader{width:100px;height:100px;background:linear-gradient(135deg,cyan,magenta);border-radius:28% 72% 65% 35%/35% 35% 65% 65%;animation:morph 2s ease-in-out infinite;box-shadow:0 0 17px #00e9ff88,0 0 25px #ed26ff66}
+@keyframes morph{0%,100%{border-radius:28% 72% 65% 35%/35% 35% 65% 65%;transform:rotate(0) scale(.92)}25%{border-radius:50% 50% 35% 65%/55% 35% 65% 45%;transform:rotate(90deg) scale(1.04)}50%{border-radius:65% 35% 45% 55%/40% 65% 35% 60%;transform:rotate(180deg) scale(1.08)}75%{border-radius:35% 65% 60% 40%/65% 50% 50% 35%;transform:rotate(270deg) scale(1.02)}}
+
+/* 3. Liquid loader: cyan body with a purple moving liquid surface. */
+.liquid-loader{position:relative;width:150px;height:150px;border-radius:50%;overflow:hidden;border:4px solid cyan;background:#12c2c9;box-shadow:0 0 13px #00eaff66}
+.liquid-loader span{position:absolute;left:-35%;top:48%;width:170%;height:95%;border-radius:42% 58% 0 0;background:linear-gradient(145deg,#c34dff,#8b56e8);animation:liquidWave 3s ease-in-out infinite;transform:rotate(-24deg)}
+@keyframes liquidWave{0%,100%{top:58%;border-radius:48% 52% 0 0;transform:rotate(-22deg)}50%{top:40%;border-radius:38% 62% 0 0;transform:rotate(15deg)}}
+
+/* 4. Four colored dots orbit around a shared center. */
+.orbit-loader{position:relative;width:150px;height:150px;animation:orbitSpin 2s linear infinite}
+.orbit-loader .dot{position:absolute;left:64px;top:64px;width:22px;height:22px;border-radius:50%;transform:rotate(var(--angle)) translateY(-58px);background:var(--dot-color);box-shadow:0 0 10px color-mix(in srgb,var(--dot-color),transparent 25%)}
+.orbit-loader .dot:nth-child(1){--angle:0deg;--dot-color:#13e7ee}
+.orbit-loader .dot:nth-child(2){--angle:90deg;--dot-color:#ed10e8}
+.orbit-loader .dot:nth-child(3){--angle:180deg;--dot-color:#13e88b}
+.orbit-loader .dot:nth-child(4){--angle:270deg;--dot-color:#fff}
+@keyframes orbitSpin{to{transform:rotate(360deg)}}
+
+/* 5. Five vertical neon bars pulse with staggered timing. */
+.bars-loader{height:130px;display:flex;align-items:center;justify-content:center;gap:8px}
+.bars-loader i{display:block;width:18px;height:120px;border-radius:20px;background:linear-gradient(to bottom,#ed20ed 0%,#a92bff 43%,#10e7f1 100%);box-shadow:0 0 9px #19dff5a8;animation:bars 1s ease-in-out infinite}
+.bars-loader i:nth-child(1),.bars-loader i:nth-child(5){height:58px;animation-delay:-.4s}
+.bars-loader i:nth-child(2),.bars-loader i:nth-child(4){height:82px;animation-delay:-.2s}
+.bars-loader i:nth-child(3){height:70px}
+@keyframes bars{0%,100%{transform:scaleY(.55);filter:brightness(.85)}50%{transform:scaleY(1);filter:brightness(1.25)}}
+
+footer{text-align:center;color:#64738e;font-size:10px;letter-spacing:.5px;padding:3px 0 0}
+@media(max-width:520px){.page{width:calc(100% - 26px);padding-top:28px}h1{margin-bottom:26px}.loader-section{margin-bottom:26px}.loader-section h2{font-size:15px}.preview-panel{height:220px}.code-panel{min-height:215px;padding:48px 16px 17px}.code-panel pre{font-size:11px}.ring-loader{width:112px;height:112px}.liquid-loader{width:130px;height:130px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}}
